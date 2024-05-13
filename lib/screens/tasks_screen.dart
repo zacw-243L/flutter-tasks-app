@@ -19,6 +19,9 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.cyan,
+      body: Column(
+        children: [],
+      ),
     );
   }
 }
