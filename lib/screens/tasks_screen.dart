@@ -19,32 +19,30 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.cyan,
-      body: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.list, color: Colors.cyan),
-          ),
-          Text(
-            'Tasks Tracker',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '${tasks.length} tasks',
-            style: TextStyle(fontSize: 18, color: Colors.grey),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(tasks[index].title),
-                  subtitle: Text(tasks[index].module),
-                );
-              },
+      body: SafeArea(
+        child: Column(
+          children: [
+            const CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: Icon(Icons.list),
             ),
-          ),
-        ],
+            const SizedBox(height: 10.0),
+            const Text('Tasks Tracker'),
+            Text('${tasks.length} Tasks'),
+            const SizedBox(height: 10.0),
+            Expanded(
+              child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(tasks[index].title),
+                    subtitle: Text(tasks[index].module),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
