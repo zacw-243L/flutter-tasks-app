@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  AddTaskScreen({super.key});
-
-  final TextEditingControllertitleController = TextEditingController();
-  final TextEditingControllermoduleController = TextEditingController();
+  const AddTaskScreen({super.key});
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController moduleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,6 +23,39 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             topLeft: Radius.circular(20.0),
             topRight: Radius.circular(20.0),
           ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Add New Task',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.cyan, fontSize: 24.0),
+            ),
+            TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(labelText: 'Task'),
+              controller: titleController,
+            ),
+            TextField(
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(labelText: 'Module'),
+              controller: moduleController,
+            ),
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+              child: const Text("ADD"),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.cyan,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );
