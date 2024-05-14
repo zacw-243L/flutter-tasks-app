@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+  const AddTaskScreen({super.key, required this.addTaskCallback});
+  final Function addTaskCallback;
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -53,7 +54,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                widget.addTaskCallback(
+                    titleController.text, moduleController.text);
+                Navigator.pop(context);
+              },
             ),
           ],
         ),

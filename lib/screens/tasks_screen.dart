@@ -6,7 +6,7 @@ class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
 
   @override
-  State<TasksScreen> createState() => _TasksScreenState();
+  _TasksScreenState createState() => _TasksScreenState();
 }
 
 class _TasksScreenState extends State<TasksScreen> {
@@ -15,6 +15,12 @@ class _TasksScreenState extends State<TasksScreen> {
     Task(title: 'Project Proposal', module: 'EGE312'),
     Task(title: 'eQuiz1', module: 'EGE313'),
   ];
+
+  void _addTask(String newTaskTitle, String newTaskModule) {
+    setState(() {
+      tasks.add(Task(title: newTaskTitle, module: newTaskModule));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +91,12 @@ class _TasksScreenState extends State<TasksScreen> {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
-            builder: (BuildContextcontext) {
+            builder: (BuildContext context) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: const AddTaskScreen(),
+                  child: AddTaskScreen(addTaskCallback: _addTask),
                 ),
               );
             },
