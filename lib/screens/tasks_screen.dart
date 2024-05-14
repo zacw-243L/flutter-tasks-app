@@ -26,12 +26,15 @@ class _TasksScreenState extends State<TasksScreen> {
           child: Align(
             alignment: Alignment.topLeft,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // add this line
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10.0),
                 const CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: Icon(Icons.list),
+                  radius: 25.0,
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.list,
+                    color: Colors.cyan,
+                  ),
                 ),
                 const SizedBox(height: 10.0),
                 const Text('Tasks Tracker'),
