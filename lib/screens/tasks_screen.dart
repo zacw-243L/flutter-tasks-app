@@ -63,7 +63,10 @@ class _TasksScreenState extends State<TasksScreen> {
                         topRight: Radius.circular(20.0),
                       ),
                     ),
-                    child: buildTasksList(tasks: tasks),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
+                      child: buildTasksList(tasks: tasks),
+                    ),
                   ),
                 ),
               ],
@@ -82,7 +85,7 @@ class _TasksScreenState extends State<TasksScreen> {
           showModalBottomSheet(
             context: context,
             builder: (BuildContextcontext) {
-              return const AddTaskScreen();
+              return AddTaskScreen();
             },
           );
         },
