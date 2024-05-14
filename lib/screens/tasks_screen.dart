@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/addtask_screen.dart';
 import '../models/task.dart';
 
 class TasksScreen extends StatefulWidget {
@@ -62,19 +63,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         topRight: Radius.circular(20.0),
                       ),
                     ),
-                    child: ListView.builder(
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(tasks[index].title),
-                          subtitle: Text(tasks[index].module),
-                          trailing: Checkbox(
-                            value: tasks[index].isDone,
-                            onChanged: (value) {},
-                          ),
-                        );
-                      },
-                    ),
+                    child: buildTasksList(tasks: tasks),
                   ),
                 ),
               ],
@@ -82,6 +71,57 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+// ignore: camel_case_types
+class buildTasksList extends StatefulWidget {
+  const buildTasksList({
+    super.key,
+    required this.tasks,
+  });
+
+  final List<Task> tasks;
+
+  @override
+  State<buildTasksList> createState() => _buildTasksListState();
+}
+
+class _buildTasksListState extends State<buildTasksList> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: widget.tasks.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(
+            widget.tasks[index].title,
+            style: TextStyle(
+              decoration: widget.tasks[index].isDone
+                  ? TextDecoration.lineThrough
+                  : null,
+            ),
+          ),
+          subtitle: Text(
+            widget.tasks[index].module,
+            style: TextStyle(
+              decoration: widget.tasks[index].isDone
+                  ? TextDecoration.lineThrough
+                  : null,
+            ),
+          ),
+          trailing: Checkbox(
+            activeColor: Colors.lightBlueAccent,
+            value: widget.tasks[index].isDone,
+            onChanged: (value) {
+              setState(() {
+                widget.tasks[index].toggleDone();
+              });
+            },
+          ),
+        );
+      },
     );
   }
 }
