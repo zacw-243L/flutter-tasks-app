@@ -22,6 +22,12 @@ class _TasksScreenState extends State<TasksScreen> {
     });
   }
 
+  void _deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +77,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(1, 15, 1, 0),
-                      child: buildTasksList(tasks: tasks),
+                      child: buildTasksList(
+                          tasks: tasks, deleteTaskCallback: _deleteTask),
                     ),
                   ),
                 ),
@@ -112,9 +119,11 @@ class buildTasksList extends StatefulWidget {
   const buildTasksList({
     super.key,
     required this.tasks,
+    required this.deleteTaskCallback,
   });
 
   final List<Task> tasks;
+  final Function deleteTaskCallback;
 
   @override
   State<buildTasksList> createState() => _buildTasksListState();
@@ -127,6 +136,7 @@ class _buildTasksListState extends State<buildTasksList> {
       itemCount: widget.tasks.length,
       itemBuilder: (context, index) {
         return ListTile(
+          onLongPress: () => widget.deleteTaskCallback(index),
           title: Text(
             widget.tasks[index].title,
             style: TextStyle(
