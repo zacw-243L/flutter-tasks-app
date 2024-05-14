@@ -28,6 +28,7 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 10.0),
                 const CircleAvatar(
                   radius: 25.0,
                   backgroundColor: Colors.white,
@@ -37,9 +38,20 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                const Text('Tasks Tracker'),
-                Text('${tasks.length} Tasks'),
-                const SizedBox(height: 10.0),
+                const Text(
+                  'Tasks Tracker',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ), // wrap with Container and set color to white
+                Text(
+                  '${tasks.length} Tasks',
+                  style: const TextStyle(
+                      fontSize: 16.0, color: Colors.white), // add this line
+                ), // wrap with Container and set color to white
+                const SizedBox(height: 20.0),
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
