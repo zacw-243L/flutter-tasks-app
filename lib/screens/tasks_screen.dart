@@ -71,6 +71,19 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.cyan,
+        shape: const CircleBorder(), // add this line
+        child: const Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContextcontext) {
+              return const AddTaskScreen();
+            },
+          );
+        },
+      ),
     );
   }
 }
